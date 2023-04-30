@@ -1,8 +1,8 @@
 {
-  "name": "filmoteka_project",
+  "name": "FilmotekaProject",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://MarkoVoitovych.github.io/FilmotekaProject",
+  "homepage": "https://MarkoVoitovych.github.io/Filmoteka-project/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /FilmotekaProject/"
