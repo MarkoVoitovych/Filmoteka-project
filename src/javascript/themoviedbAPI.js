@@ -71,3 +71,5 @@ export class ThemoviedbAPI {
     return allGenres;
   }
 }
+
+export const themoviedbAPI = new ThemoviedbAPI();

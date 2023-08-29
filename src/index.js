@@ -5,7 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { refs } from './javascript/refs';
 import { renderMarkup } from './javascript/renderMarkup';
-import { ThemoviedbAPI } from './javascript/themoviedbAPI';
+import { themoviedbAPI } from './javascript/themoviedbAPI';
 import { getItems } from './javascript/movie-modal';
 import { spinnerPlay, spinnerStop } from './javascript/spiner';
 import { callfooterModal } from './javascript/footerModal';
@@ -13,7 +13,6 @@ import { scrollFunction } from './javascript/scroll';
 import { renderGenres } from './javascript/renderGenres';
 import { paginOptions, paginOptionsLess } from './javascript/paginOptions';
 
-const themoviedbAPI = new ThemoviedbAPI();
 export let allProducts = null;
 
 let options = null;

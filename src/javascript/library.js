@@ -3,13 +3,11 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { libRefs } from './libRefs';
 import { renderLibraryMarkup } from './renderLibraryMarkUp';
-import { ThemoviedbAPI } from './themoviedbAPI';
+import { themoviedbAPI } from './themoviedbAPI';
 import { createModalMarkUp } from './renderModalMarkUp';
 import { spinnerPlay, spinnerStop } from './spiner';
 import { get, removeLocal } from './localStorageUse';
 import { libraryFooterModalOpen } from './libraryFooterModalOpen';
-
-const themoviedbAPI = new ThemoviedbAPI();
 
 libRefs.watchBtn.classList.add('is-active-library');
 
@@ -72,8 +70,7 @@ async function renderWatchedMovies() {
       );
       libRefs.library.lastElementChild.setAttribute('data-status', 'watched');
     });
-  }
-  catch (error) {
+  } catch (error) {
     Notify.failure('Ооps, something went wrong, please try again');
   }
 }
@@ -100,11 +97,9 @@ async function renderQueueMovies() {
       );
       libRefs.library.lastElementChild.setAttribute('data-status', 'queue');
     });
-  }
-  catch (error) {
+  } catch (error) {
     Notify.failure('Ооps, something went wrong, please try again');
-  }
-  finally {
+  } finally {
     spinnerStop();
   }
 }
@@ -152,7 +147,6 @@ async function onMovieCardClick(event) {
       removeFromWatchedBtn.addEventListener('click', onRemoveFromWatchedClick);
       removeFromQuequeBtn.addEventListener('click', onRemoveFromQuequeClick);
 
-
       checkLocalStorageLibrary(
         themoviedbAPI.WATCH_KEY,
         filmData,
@@ -177,7 +171,7 @@ async function onMovieCardClick(event) {
         if (e.target.dataset.list === movieStatus) {
           movieCard.remove();
         }
-        displayBg(get(themoviedbAPI.WATCH_KEY))
+        displayBg(get(themoviedbAPI.WATCH_KEY));
       }
 
       function onRemoveFromQuequeClick(e) {
@@ -188,7 +182,7 @@ async function onMovieCardClick(event) {
         if (e.target.dataset.list === movieStatus) {
           movieCard.remove();
         }
-        displayBg(get(themoviedbAPI.QUEUE_KEY))
+        displayBg(get(themoviedbAPI.QUEUE_KEY));
       }
     });
   } catch (error) {

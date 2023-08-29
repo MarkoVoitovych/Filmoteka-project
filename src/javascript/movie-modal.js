@@ -1,12 +1,10 @@
 import { refs } from './refs';
 import { allProducts } from '/src/index';
 import { createModalMarkUp } from './renderModalMarkUp';
-import { ThemoviedbAPI } from './themoviedbAPI';
+import { themoviedbAPI } from './themoviedbAPI';
 import BigPicture from 'bigpicture';
-import { set, get, remove } from './localStorageUse';
+import { set, get } from './localStorageUse';
 import { spinnerPlay, spinnerStop } from './spiner';
-
-const movieAPI = new ThemoviedbAPI();
 
 export function getItems(parent) {
   const lightboxedCard = parent.childNodes;
@@ -45,7 +43,7 @@ async function onFilmCardClick(event) {
   const filmId = selectedProduct.dataset.id;
   try {
     spinnerPlay();
-    movieAPI.fetchMovieById(filmId).then(result => {
+    themoviedbAPI.fetchMovieById(filmId).then(result => {
       const data = result;
 
       const posterPath = data.poster_path
@@ -83,13 +81,13 @@ async function onFilmCardClick(event) {
         '.lightbox-modal__queque-button'
       );
       checkLocalStorage(
-        movieAPI.WATCH_KEY,
+        themoviedbAPI.WATCH_KEY,
         filmData,
         addToWatchedBtn,
         'Added to watched'
       );
       checkLocalStorage(
-        movieAPI.QUEUE_KEY,
+        themoviedbAPI.QUEUE_KEY,
         filmData,
         addToQuequeBtn,
         'Added to queque'
@@ -107,7 +105,7 @@ async function onFilmCardClick(event) {
 
 function getTrailer(filmId) {
   try {
-    movieAPI.fetchTrailerById(filmId).then(result => {
+    themoviedbAPI.fetchTrailerById(filmId).then(result => {
       const trailers = result.results;
       if (trailers.length > 0) {
         const trailerBtn = document.querySelector('.lightbox-modal__trailer');
@@ -142,14 +140,14 @@ function onAddToWatchedClick(event) {
   event.target.textContent = 'Added to watched';
   event.target.disabled = true;
 
-  set(movieAPI.WATCH_KEY, event.target.dataset.id);
+  set(themoviedbAPI.WATCH_KEY, event.target.dataset.id);
 }
 
 function onAddToQuequeClick(event) {
   event.preventDefault();
   event.target.textContent = 'Added to queque';
   event.target.disabled = true;
-  set(movieAPI.QUEUE_KEY, event.target.dataset.id);
+  set(themoviedbAPI.QUEUE_KEY, event.target.dataset.id);
 }
 
 function checkLocalStorage(key, filmData, btn, btnText) {
