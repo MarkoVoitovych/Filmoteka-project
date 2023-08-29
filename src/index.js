@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -43,7 +44,7 @@ pagination.on('afterMove', () => {
 });
 
 async function startPage() {
-  const genresIds = await themoviedbAPI.fetchGenres();
+  await themoviedbAPI.fetchGenres();
   const trendMovies = await themoviedbAPI.fetchFavouritesMovies(page);
 
   pagination.reset(trendMovies.total_results);
